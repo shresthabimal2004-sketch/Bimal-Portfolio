@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bimal Shrestha — Content Strategist & Writer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a0;
+            --accent: #c9a961;
+            --accent-light: #d4b679;
+            --border: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Cursor */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--accent);
+        }
+
+        nav {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 4rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(201, 169, 97, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(201, 169, 97, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-label {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+
+        .hero h1 .highlight {
+            font-weight: 600;
+            color: var(--accent);
+            display: block;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 1px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-light);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: scrollAnim 2s infinite;
+        }
+
+        @keyframes scrollAnim {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(10px); opacity: 0.3; }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 4rem;
+            line-height: 1.2;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--text-secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            border-left: 2px solid var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            padding: 3rem;
+            border: 1px solid var(--border);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Portfolio */
+        .portfolio-grid {
+            display: grid;
+            gap: 4rem;
+        }
+
+        .portfolio-category {
+            border-top: 1px solid var(--border);
+            padding-top: 3rem;
+        }
+
+        .category-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+
+        .portfolio-items {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            border-color: var(--accent);
+            transform: translateX(10px);
+        }
+
+        .portfolio-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .portfolio-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Experience */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--bg-primary);
+        }
+
+        .timeline-period {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: rgba(201, 169, 97, 0.1);
+            color: var(--accent);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(201, 169, 97, 0.2);
+        }
+
+        .timeline-company {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-role {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .timeline-description li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-description li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .skill-category h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            color: var(--text-secondary);
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .language-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .language-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .language-header {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-primary);
+        }
+
+        .language-bar {
+            height: 2px;
+            background: var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .language-progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: var(--accent);
+            transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Contact */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            min-width: 30px;
+        }
+
+        .contact-details h4 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .contact-details a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-details a:hover {
+            color: var(--accent);
+        }
+
+        .contact-cta {
+            margin-top: 2rem;
+        }
+
+        .contact-cta h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            header {
+                padding: 1.5rem 2rem;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                transition: right 0.3s;
+                border-left: 1px solid var(--border);
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .hero {
+                padding: 6rem 2rem 4rem;
+            }
+
+            section {
+                padding: 4rem 2rem;
+            }
+
+            .about-grid,
+            .contact-container,
+            .skills-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">BIMAL SHRESTHA</div>
+        <nav id="nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-label">Content Strategist & Writer</div>
+            <h1>
+                Crafting Words<br>
+                <span class="highlight">That Rank & Resonate</span>
+            </h1>
+            <p class="hero-description">
+                SEO specialist and creative wordsmith blending data-driven strategy with compelling storytelling to elevate brands and drive measurable results.
+            </p>
+            <div class="cta-buttons">
+                <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="reveal">
+        <div class="section-label">Who I Am</div>
+        <h2 class="section-title">About Me</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    I'm an SEO Content Writer with a proven track record in driving traffic, engagement, and conversions. My expertise lies in the sweet spot where technical optimization meets creative storytelling.
+                </p>
+                <p>
+                    With over 5 years of experience in Nepal's digital landscape, I've mastered the art of creating content that not only ranks on search engines but genuinely resonates with audiences. From compelling blog posts to persuasive ad copy, I bring strategic thinking and creative flair to every project.
+                </p>
+                <p>
+                    My approach is rooted in understanding audience psychology, search intent, and business objectives—ensuring every word serves a purpose.
+                </p>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Brands Served</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Languages</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="reveal">
+        <div class="section-label">What I Do</div>
+        <h2 class="section-title">Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">✍️</span>
+                <h3 class="service-title">SEO Content Writing</h3>
+                <p class="service-description">
+                    Keyword-optimized articles, blogs, and web content designed to rank on Page 1 and drive qualified organic traffic to your business.
+                </p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🔧</span>
+                <h3 class="service-title">Technical SEO</h3>
+                <p class="service-description">
+                    Meta tags, internal linking, site structure optimization, and technical improvements for better crawlability and user experience.
+                </p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">📈</span>
+                <h3 class="service-title">Conversion Copywriting</h3>
+                <p class="service-description">
+                    Persuasive ad copies, landing pages, and product descriptions that boost click-through rates and drive conversions.
+                </p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🎯</span>
+                <h3 class="service-title">Digital Strategy</h3>
+                <p class="service-description">
+                    Integrated campaigns spanning SEO, social media, and content marketing for comprehensive brand growth.
+                </p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">💰</span>
+                <h3 class="service-title">SEM/PPC Support</h3>
+                <p class="service-description">
+                    Strategic ad copy creation, landing page optimization, and keyword research to maximize paid campaign ROI.
+                </p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🎬</span>
+                <h3 class="service-title">Scriptwriting</h3>
+                <p class="service-description">
+                    Engaging scripts for TV, radio, and digital platforms that strengthen brand identity and enhance recall.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="reveal">
+        <div class="section-label">Selected Work</div>
+        <h2 class="section-title">Portfolio</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-category">
+                <h3 class="category-title">Blog Content & SEO Articles</h3>
+                <div class="portfolio-items">
+                    <div class="portfolio-item">
+                        <h4>How to Resolve the Call Drop Issue? A Complete Guide</h4>
+                        <p>Technical troubleshooting guide optimized for search intent and user experience</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <h4>How Cloud Solutions Boost Customer Engagement in E-commerce</h4>
+                        <p>In-depth analysis connecting technology trends with business outcomes</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <h4>Call Recording to Boost Your Customer Service Standards</h4>
+                        <p>Practical implementation guide with actionable insights for businesses</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <h4>Grow Your Business with the 557 Area Code Phone Number!</h4>
+                        <p>Local SEO content targeting specific geographic markets</p>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-category">
+                <h3 class="category-title">Brand Copywriting & Scripts</h3>
+                <div class="portfolio-items">
+                    <div class="portfolio-item">
+                        <h4>Surya Joti Life Insurance</h4>
+                        <p>Banner copy and website content for leading insurance provider</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <h4>Saurya Cement</h4>
+                        <p>Brand jingle and advertising campaign for construction materials</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <h4>Better Home Appliances</h4>
+                        <p>Multi-channel jingles and web copy for retail brand</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <h4>HiFLife</h4>
+                        <p>Creative scripts and ad copy for lifestyle brand campaigns</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="reveal">
+        <div class="section-label">Career Journey</div>
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-period">PRESENT</span>
+                <h3 class="timeline-company">ANS CREATION</h3>
+                <p class="timeline-role">Copywriter & Scriptwriter</p>
+                <ul class="timeline-description">
+                    <li>Created impactful ad copies, scripts, and jingles for leading Nepali brands</li>
+                    <li>Partnered with creative teams to develop innovative campaigns that strengthened brand identity and market presence</li>
+                    <li>Produced engaging content tailored for television, print, and digital platforms</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-period">FEB — AUG 2025</span>
+                <h3 class="timeline-company">Codavatar</h3>
+                <p class="timeline-role">SEO Content Writer</p>
+                <ul class="timeline-description">
+                    <li>Developed SEO-optimized content for Dialaxy, a software engineering platform</li>
+                    <li>Created compelling meta descriptions and title tags to increase click-through rates</li>
+                    <li>Identified relevant keywords and incorporated them naturally into engaging content</li>
+                    <li>Improved internal linking and site structure for better crawlability and UX</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-period">JAN 2023 — DEC 2024</span>
+                <h3 class="timeline-company">Nepalbytes</h3>
+                <p class="timeline-role">Digital Marketing & Content Writer</p>
+                <ul class="timeline-description">
+                    <li>Created SEO-optimized articles, blogs, and web content to drive organic traffic</li>
+                    <li>Planned and executed digital marketing strategies, including social media and SEO campaigns</li>
+                    <li>Used analytics and SEO tools to track performance and improve content visibility</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-period">FEB 2020 — NOV 2022</span>
+                <h3 class="timeline-company">Biguls Khabar</h3>
+                <p class="timeline-role">Digital Marketing & Content Writer</p>
+                <ul class="timeline-description">
+                    <li>Wrote and edited SEO-optimized news articles on politics, business, and social affairs</li>
+                    <li>Conducted interviews, research, and fact-checking to deliver balanced, high-quality reporting</li>
+                    <li>Applied SEO strategies and digital tools to increase article visibility and audience engagement</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="reveal">
+        <div class="section-label">Expertise</div>
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Core Competencies</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">SEO Strategy</span>
+                    <span class="skill-tag">Content Writing</span>
+                    <span class="skill-tag">Copywriting</span>
+                    <span class="skill-tag">Digital Marketing</span>
+                    <span class="skill-tag">Technical SEO</span>
+                    <span class="skill-tag">Keyword Research</span>
+                    <span class="skill-tag">Content Strategy</span>
+                    <span class="skill-tag">Scriptwriting</span>
+                    <span class="skill-tag">Communication</span>
+                    <span class="skill-tag">Leadership</span>
+                    <span class="skill-tag">Time Management</span>
+                    <span class="skill-tag">Adaptability</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <div class="language-bars">
+                    <div class="language-item">
+                        <div class="language-header">
+                            <span>English</span>
+                            <span>Professional</span>
+                        </div>
+                        <div class="language-bar">
+                            <div class="language-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-header">
+                            <span>Nepali</span>
+                            <span>Native</span>
+                        </div>
+                        <div class="language-bar">
+                            <div class="language-progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-header">
+                            <span>Hindi</span>
+                            <span>Conversational</span>
+                        </div>
+                        <div class="language-bar">
+                            <div class="language-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="reveal">
+        <div class="section-label">Let's Connect</div>
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <a href="mailto:bimalshrestha2004@gmail.com">bimalshrestha2004@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <h4>Phone</h4>
+                        <a href="tel:+9779845047704">+977 9845047704</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h4>Location</h4>
+                        <p>Kalopul, Kathmandu, Nepal</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-cta">
+                <h3>Ready to elevate your content?</h3>
+                <p>
+                    Whether you need SEO-optimized content that ranks, compelling copy that converts, or creative scripts that captivate—I'm here to help bring your vision to life. Let's collaborate on something extraordinary.
+                </p>
+                <a href="mailto:bimalshrestha2004@gmail.com" class="btn btn-primary">Send a Message</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">
+                © 2026 Bimal Shrestha. Crafting words that matter.
+            </div>
+            <div class="social-links">
+                <a href="mailto:bimalshrestha2004@gmail.com">Email</a>
+                <a href="tel:+9779845047704">Phone</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+
+        // Reveal on Scroll
+        const reveals = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
